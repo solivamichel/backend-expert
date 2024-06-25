@@ -1,7 +1,6 @@
 package br.com.soliva.userserviceapi.controller.impl;
 
 import br.com.soliva.userserviceapi.controller.UserController;
-import br.com.soliva.userserviceapi.entity.User;
 import br.com.soliva.userserviceapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import models.responses.UserResponse;

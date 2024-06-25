@@ -1,6 +1,5 @@
 package br.com.soliva.userserviceapi.controller;
 
-import br.com.soliva.userserviceapi.entity.User;
 import models.responses.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
