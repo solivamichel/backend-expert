@@ -5,7 +5,6 @@ import br.com.soliva.userserviceapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import models.requests.CreateUserRequest;
 import models.responses.UserResponse;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
