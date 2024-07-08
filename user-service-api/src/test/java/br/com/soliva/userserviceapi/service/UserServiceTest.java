@@ -3,6 +3,7 @@ package br.com.soliva.userserviceapi.service;
 import br.com.soliva.userserviceapi.entity.User;
 import br.com.soliva.userserviceapi.mapper.UserMapper;
 import br.com.soliva.userserviceapi.repository.UserRepository;
+import models.exceptions.ResourceNotFoundException;
 import models.responses.UserResponse;
 import org.bson.assertions.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,8 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -49,5 +49,22 @@ class UserServiceTest {
 
         verify(repository, times(1)).findById(anyString());
         verify(mapper, times(1)).fromEntity(any(User.class));
+    }
+
+    @Test
+    @DisplayName("When call findById with invalid id then throw ResourceNotFoundException")
+    void whenCallFindByIdInvalidIdThenThrowResourceNotFoundException() {
+        when(repository.findById(anyString())).thenReturn(Optional.empty());
+
+        try {
+            service.findById("1");
+            Assertions.fail("ResourceNotFoundException not thrown");
+        } catch (ResourceNotFoundException e) {
+            assertEquals(ResourceNotFoundException.class, e.getClass());
+            assertEquals("Object not found. Id: 1, Type: UserResponse", e.getMessage());
+        }
+
+        verify(repository, times(1)).findById(anyString());
+        verify(mapper, never()).fromEntity(any(User.class));
     }
 }
