@@ -1,3 +1,11 @@
+server:
+  port: 8081
 spring:
   application:
     name: 'auth-service-api'
+  data:
+    mongodb:
+      uri: 'mongodb+srv://help-desk-user:help-desk-user@clusterhelpdesc.ergzlwj.mongodb.net/helpdeskdb?retryWrites=true&w=majority&appName=ClusterHelpDesc'
+
+jwt.secret: 't8tR0Fsk5xa4sp989M6JCRxMil32pjYo+spO2QEhKwOFgWn8kRuDoqedRc/iTfyYMkc17eMD1M6YpREY4l6iUndt+rztmiBRAKV6S84W9nE='
+jwt.expiration: 120000
